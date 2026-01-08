@@ -1,0 +1,77 @@
+@startuml
+:user: -->(function)
+@enduml
+
+@startuml
+:user: -->(function)
+:user: -->(function2)
+@enduml
+
+@startuml
+left to right direction
+package system{
+    usecase "fanction1" as f1
+    usecase "fanction2" as f2
+}
+:user: -->f1
+:user: -->f2
+@enduml
+
+//練習01
+@startuml
+Client -> Server :データを要求
+Server -> Database :問い合わせ
+Database --> Server :結果出す
+Server --> Client :データ
+@enduml
+
+//練習02
+@startuml
+Main -> calculate :データを計算する
+activate calculate
+
+calculate -> getInput :入力データ要求
+activate getInput
+getInput --> calculate :入力データ
+deactivate getInput
+
+calculate --> Main :計算結果
+deactivate calculate
+
+Main -->: 結果
+activate Main
+deactivate Main
+@enduml
+
+//練習03
+@startuml
+[*] --> オフ
+オフ --> オン : スイッチON
+オフ --> オン : 暗くなる
+
+オン --> オフ : スイッチON
+オン --> オフ : タイマー
+オン --> オフ : 明るくなる
+@enduml
+
+//練習04
+@startuml
+[*] --> 注文作成中
+
+注文作成中 --> 注文確認待ち : 商品をカートに追加
+注文確認待ち --> 支払い待ち : 注文確定
+
+支払い待ち --> 配送準備中 : 支払い完了
+配送準備中 --> 配送済み : 配送完了
+
+支払い待ち --> 支払い失敗 : 支払い失敗
+支払い失敗 --> 支払い待ち : 再度支払い通知
+
+注文作成中 --> キャンセル済み : 注文キャンセル
+注文確認待ち --> キャンセル済み : 注文キャンセウ
+支払い待ち --> キャンセル済み : 注文キャンセル
+
+キャンセル済み --> [*]
+配送済み --> [*]
+
+@enduml
